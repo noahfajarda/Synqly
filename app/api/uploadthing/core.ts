@@ -1,3 +1,4 @@
+// UPLOAD FILE API FUNCTIONS FOR UPLOAD THING
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { currentUser } from "@clerk/nextjs";
 

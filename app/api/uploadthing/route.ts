@@ -1,3 +1,4 @@
+// FILE TO EXPORT FROM CORE.TS
 import { createNextRouteHandler } from "uploadthing/next";
 
 import { ourFileRouter } from "./core";

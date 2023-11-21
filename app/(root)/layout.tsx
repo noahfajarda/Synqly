@@ -22,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    // clerk provider wrapper for authentication
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
