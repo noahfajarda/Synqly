@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignInUrl="/" afterSignUpUrl="/onboarding">
       <html lang="en">
         <body className={`${inter.className} bg-dark-1`}>{children}</body>
       </html>
