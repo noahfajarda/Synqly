@@ -5,7 +5,6 @@ import { ChangeEvent, useState } from "react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,6 +23,9 @@ import { UserValidation } from "@/lib/validations/user";
 // utils for image upload
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
+import { updateUser } from "@/lib/actions/user.actions";
+// pathname and router
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   user: {
@@ -42,6 +44,9 @@ export default function AccountProfile({ user, btnTitle }: Props) {
 
   // upload media initialization
   const { startUpload } = useUploadThing("media");
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   // form creation with form validation with zod
   const form = useForm({
@@ -98,10 +103,25 @@ export default function AccountProfile({ user, btnTitle }: Props) {
       }
     }
 
-    // TODO: update user profile
+    // manipulate user db with new/existing user with new/updated data
+    await updateUser({
+      userId: user.id,
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    });
+
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
+    }
   };
 
   return (
+    // pass in form validation values
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -113,6 +133,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
           render={({ field }) => (
             <FormItem className="flex items-center gap-4">
               <FormLabel className="account-form_image-label">
+                {/* display default image or user selected image */}
                 {field.value ? (
                   <Image
                     src={field.value}
@@ -146,7 +167,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
             </FormItem>
           )}
         />
-
+        {/* user profile entry fields */}
         <FormField
           control={form.control}
           name="name"
