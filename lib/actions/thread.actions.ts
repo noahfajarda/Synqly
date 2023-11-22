@@ -40,3 +40,79 @@ export async function createThread({
     throw new Error(`Error creating thread: ${error.message}`);
   }
 }
+
+// READ ALL
+export async function readAllThreads(pageNumber = 1, pageSize = 20) {
+  connectToDB();
+
+  // calculate number of posts to skip
+  const skipAmount = (pageNumber - 1) * pageSize;
+
+  // Don't include comments, but populate child posts recursively
+  // populate author too
+  const postsQuery = Thread.find({ parentId: { $in: [null, undefined] } })
+    .sort({ createdAt: "desc" })
+    .skip(skipAmount)
+    .limit(pageSize)
+    .populate({ path: "author", model: User })
+    .populate({
+      path: "children",
+      populate: {
+        path: "author",
+        model: User,
+        select: "_id name parentId image",
+      },
+    });
+
+  // get total post count for pagination
+  const totalPostsCount = await Thread.countDocuments({
+    parentId: { $in: [null, undefined] },
+  });
+
+  // execute the query
+  const posts = await postsQuery.exec();
+
+  const isNext = totalPostsCount > skipAmount + posts.length;
+
+  return { posts, isNext };
+}
+
+// READ ONE
+export async function readOneThread(id: string) {
+  connectToDB();
+
+  try {
+    // retrieve one post, then populate posts recursively
+    const thread = await Thread.findById(id)
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id id name image",
+      })
+      .populate({
+        path: "children",
+        populate: [
+          {
+            path: "author",
+            model: User,
+            select: "_id id name parentId image",
+          },
+          {
+            path: "children",
+            model: Thread,
+            populate: {
+              path: "author",
+              model: User,
+              select: "_id id name parentId image",
+            },
+          },
+        ],
+      })
+      // execute the query
+      .exec();
+
+    return thread;
+  } catch (error: any) {
+    throw new Error(`Error fetching thread: ${error.message}`);
+  }
+}
