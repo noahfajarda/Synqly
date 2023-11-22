@@ -13,23 +13,3 @@ uploadthing: file upload
 radix-ui
 zod: form schema validation
 MongoDB: https://account.mongodb.com/account/profile/overview (login with uci email)
-
-
-3:45:25
-
-ISSUES:
-- GOOGLE WORKS, GITHUB WORKS, SIGNIN, SIGNUP WORKS, BUT IF YOU CHANGE THE PHOTO IT DOESN'T WORK ON
-
-TODO LATER ON:
-- add hover animations to icons
-- fix profile sidebar button to go to user's profile
-- change all imports to '@'
-- change thread to something else univserally throughout app
-- change variables and function names to something uniform
-- change layout
-- update UI colors
-- add extra comments to other things, (but don't over do it)
-- remove unnecessary and unused variables
-- add images to posts (maybe videos too)
-- test application by doing everything and fixing bugs in console
-- see if you can implement cypress or jest
