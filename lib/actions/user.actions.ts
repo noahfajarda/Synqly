@@ -13,6 +13,7 @@ interface Params {
   path: string;
 }
 
+// actions similar to API routes, (DB data manipulation)
 export async function updateUser({
   userId,
   username,
