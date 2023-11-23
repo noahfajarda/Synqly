@@ -2,11 +2,13 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 
 import "../globals.css";
+import { Metadata } from "next";
+import { appTitle } from "@/constants";
 
 // for SEO customization
-export const metadata = {
-  title: "Threads",
-  description: "A Next.js 13 Meta Threads Application",
+export const metadata: Metadata = {
+  title: appTitle,
+  description: `A Next.js 13 Meta ${appTitle} Application`,
 };
 
 const inter = Inter({ subsets: ["latin"] });

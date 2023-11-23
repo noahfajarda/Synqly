@@ -7,13 +7,14 @@ import TopBar from "@/components/shared/TopBar";
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import BottomBar from "@/components/shared/BottomBar";
+import { appTitle } from "@/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 // for SEO customization
 export const metadata: Metadata = {
-  title: "Threads",
-  description: "A Next.js 13 Meta Threads Application",
+  title: appTitle,
+  description: `A Next.js 13 Meta ${appTitle} Application`,
 };
 
 export default function RootLayout({

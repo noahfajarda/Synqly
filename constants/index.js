@@ -1,3 +1,5 @@
+export const appTitle = "Connect-son"
+
 export const sidebarLinks = [
   {
     imgURL: "/assets/home.svg",
