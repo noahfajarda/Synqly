@@ -25,7 +25,7 @@ export default function RootLayout({
     // clerk provider wrapper for authentication
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={"overscroll-none " + inter.className}>
           <TopBar />
           <main className="flex flex-row">
             <LeftSidebar />
