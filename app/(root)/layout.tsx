@@ -1,7 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "@/app/globals.css";
 
 import TopBar from "@/components/shared/TopBar";
 import LeftSidebar from "@/components/shared/LeftSidebar";

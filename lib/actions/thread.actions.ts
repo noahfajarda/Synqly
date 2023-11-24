@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import Thread from "../models/thread.model";
-import User from "../models/user.model";
+import Thread from "@/lib/models/thread.model";
+import User from "@/lib/models/user.model";
 import { connectToDB } from "../mongoose";
 
 interface Params {
