@@ -48,15 +48,20 @@ export default function PostThread({ userId }: { userId: string }) {
   });
 
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    let uploadedAssetURL = "";
     if (selectedAsset && selectedAssetType) {
       // attempt to upload asset to cloudinary
-      await uploadAsset({ asset: selectedAsset, assetType: selectedAssetType });
+      uploadedAssetURL = await uploadAsset({
+        asset: selectedAsset,
+        assetType: selectedAssetType,
+      });
     }
 
     // create post in DB and reroute
     await createThread({
       text: values.thread,
       author: userId,
+      asset: uploadedAssetURL,
       communityId: null,
       // pass in pathname 'create'
       path: pathname,
@@ -83,7 +88,7 @@ export default function PostThread({ userId }: { userId: string }) {
       const assetData = await response.json();
 
       // store this url in the database
-      console.log(assetData.url);
+      return assetData.url;
     } catch (err) {
       console.error(err);
     }

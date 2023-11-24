@@ -20,13 +20,14 @@ export default async function ThreadsTab({
   return (
     <section className="mt-9 flex flex-col gap-10">
       {/* go through comments, creating a new card for each one */}
-      {result.threads.map((thread: any) => (
+      {result.threads.reverse().map((thread: any) => (
         <ThreadCard
           key={thread._id}
           id={thread._id}
           currentUserId={currentUserId}
           parentId={thread.parentId}
           content={thread.text}
+          asset={thread.asset}
           author={
             accountType === "User"
               ? { name: result.name, image: result.image, id: result.id }

@@ -8,6 +8,7 @@ import { connectToDB } from "../mongoose";
 interface Params {
   text: string;
   author: string;
+  asset: string;
   communityId: string | null;
   path: string;
 }
@@ -16,18 +17,23 @@ interface Params {
 export async function createThread({
   text,
   author,
+  asset,
   communityId,
   path,
 }: Params) {
   try {
     connectToDB();
 
-    // create new THREAD
-    const createdThread = await Thread.create({
+    const data = {
       text,
       author,
       community: null,
-    });
+    };
+
+    if (asset) data.asset = asset;
+
+    // create new THREAD
+    const createdThread = await Thread.create(data);
 
     // Update user model with ASSOCIATED thread
     await User.findByIdAndUpdate(author, {
