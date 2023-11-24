@@ -1,4 +1,4 @@
-export const appTitle = "Connect-son"
+export const appTitle = "Threads"
 
 export const sidebarLinks = [
   {
