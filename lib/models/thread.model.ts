@@ -11,6 +11,9 @@ const threadSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  asset: {
+    type: String,
+  },
   // associated COMMUNITY model
   community: {
     type: mongoose.Schema.Types.ObjectId,
