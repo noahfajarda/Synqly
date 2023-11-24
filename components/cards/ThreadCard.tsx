@@ -1,3 +1,4 @@
+import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +12,7 @@ interface Props {
     image: string;
     id: string;
   };
+  asset: string | null;
   community: {
     id: string;
     name: string;
@@ -31,11 +33,15 @@ export default function ThreadCard({
   parentId,
   content,
   author,
+  asset,
   community,
   createdAt,
   comments,
   isComment,
 }: Props) {
+  const assetType = asset?.split(".")[asset?.split(".").length - 1];
+  createdAt = formatDateString(createdAt);
+
   return (
     <article
       // conditional spacing for if card is a comment of the parent post
@@ -58,12 +64,42 @@ export default function ThreadCard({
             <div className="thread-card_bar" />
           </div>
           <div className="flex w-full flex-col">
-            <Link href={`/profile/${author.id}`} className="w-fit">
-              <h4 className="cursor-pointer text-base-semibold text-light-1">
-                {author.name}
-              </h4>
-            </Link>
-            <p className="mt-2 text-small-regular text-light-2">{content}</p>
+            <div className="flex items-center justify-between">
+              <Link href={`/profile/${author.id}`} className="w-fit">
+                <h4 className="cursor-pointer text-base-semibold text-light-1">
+                  {author.name}
+                </h4>
+              </Link>
+              <p className="text-light-1" style={{ fontSize: 11 }}>
+                {createdAt}
+              </p>
+            </div>
+            <p className="mt-2 text-small-regular text-light-2">
+              {assetType === "mp4" ? (
+                // account for videos
+                <video
+                  className="w-44 rounded border-2 border-white-500"
+                  width="500px"
+                  height="500px"
+                  controls="controls"
+                >
+                  {/* video */}
+                  <source src={asset} type="video/mp4" />
+                </video>
+              ) : assetType !== undefined ? (
+                // account for images
+                <Image
+                  src={asset}
+                  alt="heart"
+                  width={300}
+                  height={100}
+                  className="cursor-pointer object-contain rounded-md border-2 border-white-500"
+                />
+              ) : (
+                <></>
+              )}
+              {content}
+            </p>
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3 5">
                 {/* like, comment, reply, share icons */}
