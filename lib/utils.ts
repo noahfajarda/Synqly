@@ -41,4 +41,31 @@ export function formatThreadCount(count: number): string {
     return `${threadCount} ${threadWord}`;
   }
 }
-// test
+
+// upload asset
+export const uploadAsset = async ({ asset, assetType }: {
+  asset: File;
+  assetType: string;
+}) => {
+  const data = new FormData();
+  data.append("file", asset);
+  data.append("upload_preset", "social-media-image-upload");
+  data.append("cloud_name", "fajarda1storage");
+  // specify folder
+  data.append("folder", "Threads");
+  const cloudinaryURL = `https://api.cloudinary.com/v1_1/fajarda1storage/${assetType}/upload`;
+
+  try {
+    const response = await fetch(cloudinaryURL, {
+      method: "POST",
+      body: data,
+    });
+    // asset POST response data & return the asset URL alone
+    const assetData = await response.json();
+
+    // store this url in the database
+    return assetData.url;
+  } catch (err) {
+    console.error(err);
+  }
+};
