@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  id: String;
-  name: String;
-  username: String;
-  imgUrl: String;
-  personType: String;
+  id: string;
+  name: string;
+  username: string;
+  imgUrl: string;
+  personType: string;
 }
 
 export default function UserCard({
