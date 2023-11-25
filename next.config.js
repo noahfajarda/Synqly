@@ -4,6 +4,7 @@ const nextConfig = {
     serverActions: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -22,7 +23,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      // allow any image
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
+    domains: ['res.cloudinary.com']
     // typescript: {
     //   ignoreBuildErrors: true,
     // },
