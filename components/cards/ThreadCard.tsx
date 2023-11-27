@@ -58,7 +58,7 @@ export default function ThreadCard({
                 src={author.image}
                 alt="Profile image"
                 fill
-                className="cursor-pointer rounded-full"
+                className="cursor-pointer rounded-full outline outline-offset-2 outline-2 outline-emerald-300"
               />
             </Link>
             <div className="thread-card_bar" />

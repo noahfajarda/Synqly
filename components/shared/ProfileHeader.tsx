@@ -27,7 +27,7 @@ export default function ProfileHeader({
               src={imgUrl}
               alt="Profile Imiage"
               fill
-              className="rounded-full object-cover shadow-2xl"
+              className="rounded-full object-cover shadow-2xl outline outline-offset-2 outline-2 outline-emerald-300"
             />
           </div>
 
