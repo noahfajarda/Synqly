@@ -64,7 +64,7 @@ export default function ThreadCard({
             <div className="thread-card_bar" />
           </div>
           <div className="flex w-full flex-col">
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between sm:items-center sm:flex-row items-start flex-col">
               <Link href={`/profile/${author.id}`} className="w-fit">
                 <h4 className="cursor-pointer text-base-semibold text-light-1">
                   {author.name}
