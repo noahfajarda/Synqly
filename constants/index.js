@@ -1,4 +1,4 @@
-export const appTitle = "Threads"
+export const appTitle = "Synqly"
 
 export const sidebarLinks = [
   {
