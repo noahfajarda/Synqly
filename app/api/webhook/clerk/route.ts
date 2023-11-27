@@ -38,6 +38,7 @@ export const POST = async (request: Request) => {
   const payload = await request.json();
   const header = headers();
 
+  // svix instance initialization and verification
   const heads = {
     "svix-id": header.get("svix-id"),
     "svix-timestamp": header.get("svix-timestamp"),
