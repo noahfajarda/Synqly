@@ -24,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${inter.className} bg-dark-1`}>
           <video
-            src={require("@/public/background.mp4")}
+            src={require("@/app/background.mp4")}
             autoPlay
             muted
             loop

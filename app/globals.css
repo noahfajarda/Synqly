@@ -165,10 +165,6 @@
   @apply rounded-3xl bg-primary-500 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
 }
 
-.created-by {
-  font-size: 12px;
-}
-
 /* scrollbar customization */
 html {
   scrollbar-width: normal;
