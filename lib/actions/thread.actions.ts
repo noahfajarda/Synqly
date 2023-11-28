@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import Thread from "@/lib/models/thread.model";
 import User from "@/lib/models/user.model";
 import { connectToDB } from "../mongoose";
+import Community from "../models/community.model";
 
 interface Params {
   text: string;
@@ -24,10 +25,15 @@ export async function createThread({
   try {
     connectToDB();
 
+    const communityIdObject = await Community.findOne(
+      { id: communityId },
+      { _id: 1 }
+    );
+
     const data = {
       text,
       author,
-      community: null,
+      community: communityIdObject,
     };
 
     if (asset) data.asset = asset;
@@ -39,6 +45,13 @@ export async function createThread({
     await User.findByIdAndUpdate(author, {
       $push: { threads: createdThread._id },
     });
+
+    if (communityIdObject) {
+      // Update Community model
+      await Community.findByIdAndUpdate(communityIdObject, {
+        $push: { threads: createdThread._id },
+      });
+    }
 
     // reroute back to 'create-thread' path/page
     revalidatePath(path);
@@ -68,6 +81,11 @@ export async function readAllThreads(pageNumber = 1, pageSize = 20) {
         model: User,
         select: "_id name parentId image",
       },
+    })
+    .populate({
+      path: "community",
+      model: Community,
+      select: "name id image _id",
     });
 
   // get total post count for pagination
@@ -93,6 +111,11 @@ export async function readOneThread(id: string) {
       .populate({
         path: "author",
         model: User,
+        select: "_id id name parentId image",
+      })
+      .populate({
+        path: "community",
+        model: Community,
         select: "_id id name image",
       })
       .populate({
@@ -104,16 +127,13 @@ export async function readOneThread(id: string) {
             select: "_id id name parentId image",
           },
           {
-            path: "children",
-            model: Thread,
-            populate: {
-              path: "author",
-              model: User,
-              select: "_id id name parentId image",
-            },
+            path: "community",
+            model: Community,
+            select: "_id id name image",
           },
         ],
       })
+
       // execute the query
       .exec();
 
@@ -128,11 +148,17 @@ export async function addCommentToThread(
   threadId: string,
   commentText: string,
   userId: string,
-  path: string
+  path: string,
+  communityId: string | null
 ) {
   connectToDB();
 
   try {
+    const communityIdObject = await Community.findOne(
+      { id: communityId },
+      { _id: 1 }
+    );
+
     // add comment
     // Find original post by id
     const originalThread = await Thread.findById(threadId);
@@ -146,6 +172,7 @@ export async function addCommentToThread(
       text: commentText,
       author: userId,
       parentId: threadId,
+      community: communityIdObject,
     });
 
     // save new post
