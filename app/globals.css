@@ -197,7 +197,11 @@ html::-webkit-scrollbar-thumb:hover {
 .cl-internal-7pl8hj,
 .cl-internal-138ov2f,
 .cl-internal-1xpzc82,
-.cl-internal-17bz5n6 {
+.cl-internal-17bz5n6,
+.cl-internal-1p383is,
+.cl-internal-3vf5mz,
+.cl-internal-1bm3sy9,
+.cl-internal-1dqcph {
   color: white;
 }
 
@@ -207,22 +211,28 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 /* main color */
-.cl-internal-15amzqo {
+.cl-internal-15amzqo,
+.cl-internal-1g55m7r,
+.cl-internal-am3h3o {
   color: var(--primary-color);
 }
 .cl-internal-15amzqo:hover {
   color: var(--primary-hover-color);
 }
-.cl-internal-1fsg6zy {
+.cl-internal-1fsg6zy,
+.cl-internal-1kii5f8 {
   background-color: var(--primary-color);
   color: black;
 }
-.cl-internal-1fsg6zy:hover {
+.cl-internal-1fsg6zy:hover,
+.cl-internal-1kii5f8:hover {
   background-color: var(--primary-hover-color);
 }
-.cl-internal-1bm3sy9 {
-  color: white;
-}
 .cl-internal-1bm3sy9:hover {
+  background-color: rgba(128, 128, 128);
+}
+
+/* clerk organizations */
+.cl-internal-2tn0z0 {
   background-color: rgba(128, 128, 128);
 }
