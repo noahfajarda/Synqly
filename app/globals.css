@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: cyan;
+  --primary-hover-color: rgb(0, 185, 185);
+}
+
 @layer components {
   /* main */
   .main-container {
@@ -160,6 +165,10 @@
   @apply rounded-3xl bg-primary-500 px-8 py-2 !text-small-regular text-light-1 max-xs:w-full !important;
 }
 
+.created-by {
+  font-size: 12px;
+}
+
 /* scrollbar customization */
 html {
   scrollbar-width: normal;
@@ -178,4 +187,46 @@ html::-webkit-scrollbar-thumb {
 
 html::-webkit-scrollbar-thumb:hover {
   background-color: rgb(99, 88, 255);
+}
+
+/* CLERK CUSTOMIZATION */
+/* entire card */
+.cl-internal-17ydaof {
+  background-color: rgba(128, 128, 128, 0.6);
+}
+
+/* text colors */
+.cl-internal-1vbdq0x,
+.cl-internal-13zhnx0,
+.cl-internal-7pl8hj,
+.cl-internal-138ov2f,
+.cl-internal-1xpzc82,
+.cl-internal-17bz5n6 {
+  color: white;
+}
+
+/* powered by clerk */
+.cl-internal-b3fm6y {
+  display: none;
+}
+
+/* main color */
+.cl-internal-15amzqo {
+  color: var(--primary-color);
+}
+.cl-internal-15amzqo:hover {
+  color: var(--primary-hover-color);
+}
+.cl-internal-1fsg6zy {
+  background-color: var(--primary-color);
+  color: black;
+}
+.cl-internal-1fsg6zy:hover {
+  background-color: var(--primary-hover-color);
+}
+.cl-internal-1bm3sy9 {
+  color: white;
+}
+.cl-internal-1bm3sy9:hover {
+  background-color: rgba(128, 128, 128);
 }

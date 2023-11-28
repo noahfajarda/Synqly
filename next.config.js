@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const withVideos = require('next-videos')
+const withPlugins = require('next-compose-plugins');
+const nextConfig = withPlugins([withVideos], {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -34,6 +36,6 @@ const nextConfig = {
     ],
     domains: ['res.cloudinary.com'],
   },
-};
+})
 
 module.exports = nextConfig;

@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@600&family=Raleway:wght@600&display=swap");
+
 .boujee-text {
   --bg-size: 400%;
   --color-one: hsl(200, 90%, 55%);
   --color-two: hsl(141, 95%, 55%);
-  font-family: sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: clamp(3rem, 25vmin, 8rem);
   background: linear-gradient(
       90deg,
@@ -17,11 +19,17 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .boujee-text {
-    animation: move-bg 8s linear infinite;
+    animation: move-bg 10s linear infinite;
   }
   @keyframes move-bg {
     to {
       background-position: var(--bg-size) 0;
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  .boujee-text {
+    font-size: 80px;
   }
 }

@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { Metadata } from "next";
 import { appTitle } from "@/constants";
-import "./style.css"
+import "./style.css";
 
 // for SEO customization
 export const metadata: Metadata = {
@@ -23,10 +23,23 @@ export default function RootLayout({
     <ClerkProvider afterSignInUrl="/" afterSignUpUrl="/onboarding">
       <html lang="en">
         <body className={`${inter.className} bg-dark-1`}>
-          <div className="w-full flex flex-col justify-center items-center min-h-screen">
-            <p className="text-heading1-bold boujee-text">
-              {appTitle}
-            </p>
+          <video
+            src={require("@/public/background.mp4")}
+            autoPlay
+            muted
+            loop
+            className="absolute top-0 -z-10 w-full h-full object-cover"
+          />
+          <div className="w-full flex md:flex-row flex-col justify-around items-center min-h-screen">
+            <div className="md:justify-start justify-center">
+              <p className="boujee-text">{appTitle}</p>
+              <p className="text-white md:text-start text-center">
+                Connect And Sync Uniquely
+              </p>
+              <p className="created-by text-white md:text-start text-center">
+                Created By <span className="created-by boujee-text">Noah</span>
+              </p>
+            </div>
             {children}
           </div>
         </body>
