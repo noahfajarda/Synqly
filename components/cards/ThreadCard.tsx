@@ -64,15 +64,30 @@ export default function ThreadCard({
             <div className="thread-card_bar" />
           </div>
           <div className="flex w-full flex-col">
-            <div className="flex justify-between sm:items-center sm:flex-row items-start flex-col">
+            <div>
               <Link href={`/profile/${author.id}`} className="w-fit">
                 <h4 className="cursor-pointer text-base-semibold text-light-1">
                   {author.name}
                 </h4>
               </Link>
-              <p className="text-light-1" style={{ fontSize: 11 }}>
-                {createdAt}
-              </p>
+              {community && (
+                <Link
+                  href={`/communities/${community.id}`}
+                  className="flex items-center"
+                >
+                  <p className="text-subtle-medium text-gray-1">
+                    {community.name} Community
+                  </p>
+
+                  <Image
+                    src={community.image}
+                    alt={community.name}
+                    width={14}
+                    height={14}
+                    className="ml-1 rounded-full object-cover"
+                  />
+                </Link>
+              )}
             </div>
             <p className="mt-2 text-small-regular text-light-2">
               {assetType === "mp4" ? (
@@ -136,7 +151,7 @@ export default function ThreadCard({
               </div>
 
               {/* show comments if exist */}
-              {isComment && comments.length > 0 && (
+              {!isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
                   <p className="mt-1 text-subtle-medium text-gray-1">
                     {comments.length} replies
@@ -146,6 +161,11 @@ export default function ThreadCard({
             </div>
           </div>
         </div>
+
+        {/* delete post */}
+        {/* show comment logos */}
+
+        <p className="text-subtle-medium text-gray-1">{createdAt}</p>
       </div>
     </article>
   );
