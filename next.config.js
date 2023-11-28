@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require('next-pwa');
 const withVideos = require('next-videos')
 const withPlugins = require('next-compose-plugins');
 const nextConfig = withPlugins([withVideos], {
+  ...withPWA({
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+  }),
   typescript: {
     ignoreBuildErrors: true,
   },
