@@ -201,8 +201,16 @@ html::-webkit-scrollbar-thumb:hover {
 .cl-internal-1p383is,
 .cl-internal-3vf5mz,
 .cl-internal-1bm3sy9,
-.cl-internal-1dqcph {
+.cl-internal-1dqcph,
+.cl-internal-1ptfnbv,
+.cl-internal-gofy8m,
+.cl-internal-1cngl90,
+.cl-internal-lb49to,
+.cl-internal-qk1s8p {
   color: white;
+}
+.cl-internal-1cngl90 {
+  border-bottom: 2px solid white;
 }
 
 /* powered by clerk */
