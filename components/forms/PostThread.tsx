@@ -23,12 +23,14 @@ import { createThread } from "@/lib/actions/thread.actions";
 import { useState } from "react";
 import { uploadAsset } from "@/lib/utils";
 import AssetUploader from "./AssetUploader";
+import { useOrganization } from "@clerk/nextjs";
 // update user
 // import { updateUser } from "@/lib/actions/user.actions";
 
 export default function PostThread({ userId }: { userId: string }) {
   const router = useRouter();
   const pathname = usePathname();
+  const { organization } = useOrganization();
 
   // asset states
   const [selectedAsset, setSelectedAsset] = useState<File>();
@@ -58,7 +60,7 @@ export default function PostThread({ userId }: { userId: string }) {
       text: values.thread,
       author: userId,
       asset: uploadedAssetURL,
-      communityId: null,
+      communityId: organization ? organization.id : null,
       path: pathname, // pathname = 'create'
     });
 
