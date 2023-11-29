@@ -11,15 +11,15 @@ export const metadata: Metadata = {
   title: appTitle,
   description: `A Next.js 13 Meta ${appTitle} Application`,
   icons: {
-    icon: '/logos/logo.png',
-    shortcut: '/logos/logo.png',
-    apple: '/logos/logo.png',
+    icon: "/logos/logo.png",
+    shortcut: "/logos/app-logo.png",
+    apple: "/logos/app-logo.png",
     other: {
-      rel: '/logos/logo.png',
-      url: '/logos/logo.png',
+      rel: "/logos/logo.png",
+      url: "/logos/logo.png",
     },
   },
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
 };
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,7 +34,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${inter.className} bg-dark-1`}>
           <video
-            src={"https://res.cloudinary.com/fajarda1storage/video/upload/v1701139083/Threads/background/background_cvsygj.mp4"}
+            src={
+              "https://res.cloudinary.com/fajarda1storage/video/upload/v1701139083/Threads/background/background_cvsygj.mp4"
+            }
             autoPlay
             muted
             loop
