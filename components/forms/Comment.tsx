@@ -21,6 +21,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { CommentValidation } from "@/lib/validations/thread";
 import Image from "next/image";
 import { addCommentToThread } from "@/lib/actions/thread.actions";
+import { useOrganization } from "@clerk/nextjs";
 // import { createThread } from "@/lib/actions/thread.actions";
 
 interface Props {
@@ -36,6 +37,7 @@ export default function Comment({
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
+  const { organization } = useOrganization();
 
   // form creation with form validation with zod
   const form = useForm({
@@ -46,12 +48,14 @@ export default function Comment({
   });
 
   const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
+    const communityId = organization ? organization.id : null;
     // submission to add comment to thread
     await addCommentToThread(
       threadId,
       values.thread,
       JSON.parse(currentUserId),
-      pathname
+      pathname,
+      communityId
     );
 
     form.reset();
