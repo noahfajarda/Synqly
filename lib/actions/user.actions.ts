@@ -6,6 +6,7 @@ import { connectToDB } from "@/lib/mongoose";
 import Thread from "@/lib/models/thread.model";
 import { FilterQuery, SortOrder } from "mongoose";
 import Community from "../models/community.model";
+import { clerkClient } from "@clerk/nextjs/server";
 
 interface Params {
   userId: string;
@@ -14,6 +15,7 @@ interface Params {
   bio: string;
   image: string;
   path: string;
+  pfpUrl?: string;
 }
 
 // actions similar to API routes, (DB data manipulation)
@@ -24,6 +26,7 @@ export async function updateUser({
   bio,
   image,
   path,
+  pfpUrl,
 }: Params): Promise<void> {
   connectToDB();
 
@@ -40,6 +43,16 @@ export async function updateUser({
       { upsert: true } // upsert: insert OR update (if already exists)
     );
 
+    // update user on clerk
+    const clerkUserUpdate = {
+      firstName: name.substring(0, name.indexOf(" ")),
+      lastName: name.substring(name.indexOf(" ") + 1),
+      username: username.toLowerCase(),
+      imageUrl: pfpUrl,
+    };
+
+    await clerkClient.users.updateUser(userId, clerkUserUpdate);
+
     if (path === "/profile/edit") {
       // revalidate data mannually using path without relying on cache
       revalidatePath(path);
@@ -53,11 +66,10 @@ export async function fetchUser(userId: string) {
   try {
     connectToDB();
 
-    return await User.findOne({ id: userId })
-      .populate({
-        path: "communities",
-        model: Community
-      });
+    return await User.findOne({ id: userId }).populate({
+      path: "communities",
+      model: Community,
+    });
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }

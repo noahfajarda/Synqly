@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   accountId: string;
@@ -43,6 +44,12 @@ export default function ProfileHeader({
       {/* TODO: Community */}
 
       <p className="mt-5 max-w-lg text-base-regular text-light-2">bio</p>
+      <Link
+        href="/profile/edit"
+        className={`leftsidebar_link flex justify-center text-white bg-primary-500 hover:bg-violet-400 transition-all`}
+      >
+        Edit Profile
+      </Link>
       <div className="mt-12 h-0.5 w-full bg-dark-3" />
     </div>
   );

@@ -91,15 +91,14 @@ export default function AccountProfile({ user, btnTitle }: Props) {
   // user form submission
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     const blob = values.profile_photo;
-
     const hasImageChanged = isBase64Image(blob);
+    let profile_photo_url = "";
 
     // once image selected, upload and set profile photo again
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
-
-      if (imgRes && imgRes[0].fileUrl) {
-        values.profile_photo = imgRes[0].fileUrl;
+      if (imgRes && imgRes[0].url) {
+        profile_photo_url = imgRes[0].url;
       }
     }
 
@@ -111,6 +110,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
       bio: values.bio,
       image: values.profile_photo,
       path: pathname,
+      pfpUrl: profile_photo_url,
     });
 
     if (pathname === "/profile/edit") {
