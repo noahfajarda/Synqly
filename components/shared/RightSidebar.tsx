@@ -2,6 +2,7 @@ import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import UserCard from "@/components/cards/UserCard";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import SpotifyWidget from "../features/SpotifyWidget";
 
 export default async function RightSidebar() {
   // check for current user and info
@@ -35,6 +36,7 @@ export default async function RightSidebar() {
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="text-heading4-medium text-light-1">
           Suggested Communities
+          <SpotifyWidget />
         </h3>
       </div>
       <div className="flex flex-1 flex-col justify-start">
