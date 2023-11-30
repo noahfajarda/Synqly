@@ -229,7 +229,7 @@ html::-webkit-scrollbar-thumb:hover {
 .cl-internal-1ptfnbv,
 .cl-internal-14fou2l,
 .cl-internal-91iqgp,
-.cl-internal-rl5aly:disabled, 
+.cl-internal-rl5aly:disabled,
 .cl-internal-rl5aly[data-disabled],
 .cl-internal-147wstt,
 .cl-internal-iqmees,
@@ -264,7 +264,6 @@ html::-webkit-scrollbar-thumb:hover {
 .cl-internal-1cngl90:focus {
   border-color: var(--primary-color);
 }
-
 
 /* powered by clerk */
 .cl-internal-b3fm6y {
