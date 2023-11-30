@@ -43,7 +43,10 @@ export function formatThreadCount(count: number): string {
 }
 
 // upload asset
-export const uploadAsset = async ({ asset, assetType }: {
+export const uploadAsset = async ({
+  asset,
+  assetType,
+}: {
   asset: File;
   assetType: string;
 }) => {
@@ -68,4 +71,15 @@ export const uploadAsset = async ({ asset, assetType }: {
   } catch (err) {
     console.error(err);
   }
+};
+
+// filter suggested users
+export const createIndiciesArr = (shownUsers: number, suggestedUsers) => {
+  const indices = new Set();
+
+  while (indices.size < shownUsers) {
+    const randomIndex = Math.floor(Math.random() * suggestedUsers.length);
+    indices.add(randomIndex);
+  }
+  return Array.from(indices);
 };

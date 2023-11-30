@@ -108,7 +108,7 @@ export default function ThreadCard({
                   alt="heart"
                   width={300}
                   height={100}
-                  className="cursor-pointer object-contain rounded-md border-2 border-white-500"
+                  className="object-contain rounded-md border-2 border-white-500"
                 />
               ) : (
                 <></>

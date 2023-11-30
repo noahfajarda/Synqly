@@ -2,6 +2,9 @@ import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import UserCard from "@/components/cards/UserCard";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { createIndiciesArr } from "@/lib/utils";
+import { fetchCommunities } from "@/lib/actions/community.actions";
+import CommunityCard from "../cards/CommunityCard";
 
 export default async function RightSidebar() {
   // check for current user and info
@@ -11,27 +14,28 @@ export default async function RightSidebar() {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("onboarding");
 
+  // fetch communities with action
+  const communityResult = await fetchCommunities({
+    searchString: "",
+    pageNumber: 1,
+    pageSize: 25,
+  });
+
   // fetch users with action
-  const result = await fetchUsers({
+  const userResult = await fetchUsers({
     userId: user.id,
     searchString: "",
     pageNumber: 1,
     pageSize: 25,
   });
-  let suggestedUsers = result.users; // array of users
+
+  let suggestedUsers = userResult.users; // array of users
   const shownUsers = 3;
-  let indiciesArr = [];
-
   // get at most 3 random users
-  if (suggestedUsers.length > shownUsers) {
-    const indices = new Set();
-
-    while (indices.size < shownUsers) {
-      const randomIndex = Math.floor(Math.random() * suggestedUsers.length);
-      indices.add(randomIndex);
-    }
-    indiciesArr = Array.from(indices);
-  }
+  const indiciesArr =
+    suggestedUsers.length > shownUsers
+      ? createIndiciesArr(shownUsers, suggestedUsers)
+      : [];
 
   return (
     <section className="custom-scrollbar rightsidebar">
@@ -39,6 +43,21 @@ export default async function RightSidebar() {
         <h3 className="text-heading4-medium text-light-1">
           Suggested Communities
         </h3>
+        <div>
+          {communityResult.communities.map((community) => (
+            <div className="p-3">
+              <CommunityCard
+                key={community.id}
+                id={community.id}
+                name={community.name}
+                username={community.username}
+                imgUrl={community.image}
+                bio={community.bio}
+                members={community.members}
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="text-heading4-medium text-light-1">Suggested Users</h3>
