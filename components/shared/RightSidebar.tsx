@@ -18,16 +18,19 @@ export default async function RightSidebar() {
     pageNumber: 1,
     pageSize: 25,
   });
+  let suggestedUsers = result.users; // array of users
+  const shownUsers = 3;
+  let indiciesArr = [];
 
   // get at most 3 random users
-  if (result.users.length > 3) {
+  if (suggestedUsers.length > shownUsers) {
     const indices = new Set();
 
-    while (indices.size < 3) {
-      const randomIndex = Math.floor(Math.random() * result.users.length);
+    while (indices.size < shownUsers) {
+      const randomIndex = Math.floor(Math.random() * suggestedUsers.length);
       indices.add(randomIndex);
     }
-    console.log(Array.from(indices));
+    indiciesArr = Array.from(indices);
   }
 
   return (
@@ -40,18 +43,38 @@ export default async function RightSidebar() {
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="text-heading4-medium text-light-1">Suggested Users</h3>
         <div className="p-4">
-          {result.users.map((person, idx) => (
-            <div key={idx} className="py-3">
-              <UserCard
-                key={person.id}
-                id={person.id}
-                name={person.name}
-                username={person.username}
-                imgUrl={person.image}
-                personType="User"
-              />
-            </div>
-          ))}
+          {/* show random users */}
+          {indiciesArr.length === shownUsers ? (
+            <>
+              {indiciesArr.map((num) => (
+                <div key={num} className="py-3">
+                  <UserCard
+                    key={suggestedUsers[num].id}
+                    id={suggestedUsers[num].id}
+                    name={suggestedUsers[num].name}
+                    username={suggestedUsers[num].username}
+                    imgUrl={suggestedUsers[num].image}
+                    personType="User"
+                  />
+                </div>
+              ))}
+            </>
+          ) : (
+            <>
+              {suggestedUsers.map((person, idx) => (
+                <div key={idx} className="py-3">
+                  <UserCard
+                    key={person.id}
+                    id={person.id}
+                    name={person.name}
+                    username={person.username}
+                    imgUrl={person.image}
+                    personType="User"
+                  />
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </section>
