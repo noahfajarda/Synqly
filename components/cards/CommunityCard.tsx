@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "../ui/button";
+import { btnStyle } from "@/constants";
 
 interface Props {
   id: string;
@@ -39,8 +40,8 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <Link href={`/communities/${id}`}>
-          <Button size="sm" className="community-card_btn">
-            View
+          <Button size="sm" className={`community-card_btn ${btnStyle}`}>
+            <div className="text-white">View</div>
           </Button>
         </Link>
 

@@ -148,6 +148,15 @@ export default function ThreadCard({
                   height={24}
                   className="cursor-pointer object-contain"
                 />
+                {currentUserId === author.id && (
+                  <Image
+                    src="/assets/delete.svg"
+                    alt="trash"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer object-contain"
+                  />
+                )}
               </div>
 
               {/* show comments if exist */}

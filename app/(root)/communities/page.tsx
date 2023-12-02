@@ -22,7 +22,7 @@ export default async function page() {
 
   return (
     <section>
-      <h1 className="head-text mb-10">Search For Users</h1>
+      <h1 className="head-text mb-10">Communities</h1>
 
       {/* Search Bar */}
       <div className="mt-14 flex flex-col gap-9">

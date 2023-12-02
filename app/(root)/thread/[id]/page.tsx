@@ -26,6 +26,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           key={thread._id}
           id={thread._id}
           currentUserId={user?.id || ""}
+          asset={thread.asset || null}
           parentId={thread.parentId}
           content={thread.text}
           author={thread.author}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { btnStyle } from "@/constants";
 
 interface Props {
   id: string;
@@ -39,7 +40,7 @@ export default function UserCard({
       </div>
 
       <Button
-        className="user-card_btn"
+        className={`user-card_btn ${btnStyle} hover:text-white`}
         onClick={() => router.push(`/profile/${id}`)}
       >
         View
