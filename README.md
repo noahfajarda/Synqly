@@ -18,6 +18,7 @@ Utilizing cutting-edge technology, this app ensures secure connections while off
 
 ### Technologies Used:
 
+- Next.js
 - Shadcn/ui
 - [Clerk auth](https://clerk.com/docs/references/nextjs/custom-signup-signin-pages)
 - [Clerk dashboard](https://dashboard.clerk.com/apps/app_2YTlBjVWiKloj6ktYZWmnQcPvoW/instances/ins_2YTlBlgPcjg9o168tIE6PjlI4sk)

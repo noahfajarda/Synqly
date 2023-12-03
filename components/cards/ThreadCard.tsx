@@ -49,7 +49,7 @@ export default function ThreadCard({
         isComment ? `px-0 xs:px-7` : `bg-dark-2 p-7`
       }`}
     >
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between sm:flex-row flex-col">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
             {/* post user's pfp */}
@@ -174,7 +174,9 @@ export default function ThreadCard({
         {/* delete post */}
         {/* show comment logos */}
 
-        <p className="text-subtle-medium text-gray-1">{createdAt}</p>
+        <p className="text-subtle-medium text-gray-1 sm:pt-0 pt-6">
+          {createdAt}
+        </p>
       </div>
     </article>
   );
