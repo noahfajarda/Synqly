@@ -90,7 +90,7 @@ export default function ThreadCard({
               )}
             </div>
             <p className="mt-2 text-small-regular text-light-2">
-              {assetType === "mp4" ? (
+              {assetType === "mp4" || assetType === "mov" ? (
                 // account for videos
                 <video
                   className="w-44 rounded border-2 border-white-500"
