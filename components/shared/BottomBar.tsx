@@ -23,7 +23,7 @@ export default function BottomBar() {
               key={link.label}
               className={`bottombar_link ${
                 isActive && "bg-primary-500"
-              } hover:bg-green-400`}
+              } hover:bg-green-400 transition-all`}
             >
               <Image
                 src={link.imgURL}

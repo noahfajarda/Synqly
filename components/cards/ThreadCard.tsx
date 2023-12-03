@@ -58,7 +58,7 @@ export default function ThreadCard({
                 src={author.image}
                 alt="Profile image"
                 fill
-                className="cursor-pointer rounded-full outline outline-offset-2 outline-2 outline-emerald-300"
+                className="cursor-pointer rounded-full outline outline-offset-2 outline-2 outline-emerald-300 hover:outline-red-300 transition-all"
               />
             </Link>
             <div className="thread-card_bar" />
@@ -66,7 +66,7 @@ export default function ThreadCard({
           <div className="flex w-full flex-col">
             <div>
               <Link href={`/profile/${author.id}`} className="w-fit">
-                <h4 className="cursor-pointer text-base-semibold text-light-1">
+                <h4 className="cursor-pointer text-base-semibold text-light-1 hover:text-cyan-300 transition-all">
                   {author.name}
                 </h4>
               </Link>
