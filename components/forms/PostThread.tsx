@@ -25,8 +25,8 @@ import { uploadAsset } from "@/lib/utils";
 import AssetUploader from "./AssetUploader";
 import { useOrganization } from "@clerk/nextjs";
 // update user
-// import { updateUser } from "@/lib/actions/user.actions";
 
+let isLoading = false;
 export default function PostThread({ userId }: { userId: string }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -46,6 +46,11 @@ export default function PostThread({ userId }: { userId: string }) {
   });
 
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    isLoading = true;
+    const loadingEl = document.querySelector("#loading");
+    loadingEl.style.display = "block";
+    loadingEl.style.width = "10%";
+
     let uploadedAssetURL = "";
     if (selectedAsset && selectedAssetType) {
       // attempt to upload asset to cloudinary if asset exists
@@ -54,6 +59,7 @@ export default function PostThread({ userId }: { userId: string }) {
         assetType: selectedAssetType,
       });
     }
+    loadingEl.style.width = "50%";
 
     // create post in DB and reroute
     await createThread({
@@ -63,6 +69,7 @@ export default function PostThread({ userId }: { userId: string }) {
       communityId: organization ? organization.id : null,
       path: pathname, // pathname = 'create'
     });
+    loadingEl.style.width = "100%";
 
     router.push("/");
   };
@@ -102,6 +109,20 @@ export default function PostThread({ userId }: { userId: string }) {
           Post Thread
         </Button>
       </form>
+      <div className="text-white w-full pt-4">
+        <div className="rounded w-full h-full text-center text-white">
+          <div
+            id="loading"
+            style={{
+              display: "none",
+              width: "0%",
+              transition: "all 0.5s ease-in-out",
+            }}
+            className="rounded bg-red-500 h-full p-1"
+          ></div>
+          {isLoading && "Loading..."}
+        </div>
+      </div>
     </Form>
   );
 }

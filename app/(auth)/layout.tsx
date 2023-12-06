@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: `A Next.js 13 Meta ${appTitle} Application`,
   icons: {
     icon: "/logos/logo.png",
-    shortcut: "/logos/app-logo.png",
+    shortcut: "/logos/logo.png",
     apple: "/logos/app-logo.png",
     other: {
-      rel: "/logos/logo.png",
-      url: "/logos/logo.png",
+      rel: "/logos/app-logo.png",
+      url: "/logos/app-logo.png",
     },
   },
   manifest: "/manifest.json",

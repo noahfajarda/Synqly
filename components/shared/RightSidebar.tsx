@@ -3,6 +3,9 @@ import UserCard from "@/components/cards/UserCard";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import SpotifyWidget from "../features/SpotifyWidget";
+import { createIndiciesArr } from "@/lib/utils";
+import { fetchCommunities } from "@/lib/actions/community.actions";
+import CommunityCard from "../cards/CommunityCard";
 
 export default async function RightSidebar() {
   // check for current user and info
@@ -12,24 +15,28 @@ export default async function RightSidebar() {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("onboarding");
 
+  // fetch communities with action
+  const communityResult = await fetchCommunities({
+    searchString: "",
+    pageNumber: 1,
+    pageSize: 25,
+  });
+
   // fetch users with action
-  const result = await fetchUsers({
+  const userResult = await fetchUsers({
     userId: user.id,
     searchString: "",
     pageNumber: 1,
     pageSize: 25,
   });
 
+  let suggestedUsers = userResult.users; // array of users
+  const shownUsers = 3;
   // get at most 3 random users
-  if (result.users.length > 3) {
-    const indices = new Set();
-
-    while (indices.size < 3) {
-      const randomIndex = Math.floor(Math.random() * result.users.length);
-      indices.add(randomIndex);
-    }
-    console.log(Array.from(indices));
-  }
+  const indiciesArr =
+    suggestedUsers.length > shownUsers
+      ? createIndiciesArr(shownUsers, suggestedUsers)
+      : [];
 
   return (
     <section className="custom-scrollbar rightsidebar">
@@ -38,22 +45,57 @@ export default async function RightSidebar() {
           Suggested Communities
           <SpotifyWidget />
         </h3>
+        <div>
+          {communityResult.communities.map((community) => (
+            <div className="p-3">
+              <CommunityCard
+                key={community.id}
+                id={community.id}
+                name={community.name}
+                username={community.username}
+                imgUrl={community.image}
+                bio={community.bio}
+                members={community.members}
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="text-heading4-medium text-light-1">Suggested Users</h3>
         <div className="p-4">
-          {result.users.map((person, idx) => (
-            <div key={idx} className="py-3">
-              <UserCard
-                key={person.id}
-                id={person.id}
-                name={person.name}
-                username={person.username}
-                imgUrl={person.image}
-                personType="User"
-              />
-            </div>
-          ))}
+          {/* show random users */}
+          {indiciesArr.length === shownUsers ? (
+            <>
+              {indiciesArr.map((num) => (
+                <div key={num} className="py-3">
+                  <UserCard
+                    key={suggestedUsers[num].id}
+                    id={suggestedUsers[num].id}
+                    name={suggestedUsers[num].name}
+                    username={suggestedUsers[num].username}
+                    imgUrl={suggestedUsers[num].image}
+                    personType="User"
+                  />
+                </div>
+              ))}
+            </>
+          ) : (
+            <>
+              {suggestedUsers.map((person, idx) => (
+                <div key={idx} className="py-3">
+                  <UserCard
+                    key={person.id}
+                    id={person.id}
+                    name={person.name}
+                    username={person.username}
+                    imgUrl={person.image}
+                    personType="User"
+                  />
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import CommunityCard from "@/components/cards/CommunityCard";
-import UserCard from "@/components/cards/UserCard";
 import { fetchCommunities } from "@/lib/actions/community.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
@@ -22,7 +21,7 @@ export default async function page() {
 
   return (
     <section>
-      <h1 className="head-text mb-10">Search For Users</h1>
+      <h1 className="head-text mb-10">Communities</h1>
 
       {/* Search Bar */}
       <div className="mt-14 flex flex-col gap-9">

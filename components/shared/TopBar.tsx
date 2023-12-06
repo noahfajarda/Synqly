@@ -9,7 +9,7 @@ export default function TopBar() {
     <nav className="topbar">
       <Link href="/" className="flex items-center gap-4">
         <Image src="/icon-512x512.png" alt="logo" width={28} height={28} />
-        <p className="text-heading3-bold text-light-1 max-xs:hidden">
+        <p className="text-heading3-bold text-light-1 max-xs:hidden hover:text-cyan-300 transition-all">
           {appTitle}
         </p>
       </Link>
@@ -19,13 +19,13 @@ export default function TopBar() {
           {/* will show if logged In */}
           <SignedIn>
             <SignOutButton>
-              <div className="flex cursor-pointer">
+              <div className="flex cursor-pointer rounded p-3 hover:bg-cyan-400 transition-all">
                 <Image
                   src="/assets/logout.svg"
                   alt="logout"
                   width={24}
                   height={24}
-                ></Image>
+                />
               </div>
             </SignOutButton>
           </SignedIn>

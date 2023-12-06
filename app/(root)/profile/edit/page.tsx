@@ -5,6 +5,7 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import AccountProfile from "@/components/forms/AccountProfile";
 
 export default async function Page() {
+  // only show page if user exists AND has already done onboarding
   const user = await currentUser();
   if (!user) return null;
 

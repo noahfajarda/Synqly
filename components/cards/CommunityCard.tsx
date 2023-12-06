@@ -29,7 +29,9 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
 
         <div>
           <Link href={`/communities/${id}`}>
-            <h4 className="text-base-semibold text-light-1">{name}</h4>
+            <h4 className="text-base-semibold text-light-1 hover:text-cyan-400 transition-all">
+              {name}
+            </h4>
           </Link>
           <p className="text-small-medium text-gray-1">@{username}</p>
         </div>
@@ -39,8 +41,11 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <Link href={`/communities/${id}`}>
-          <Button size="sm" className="community-card_btn">
-            View
+          <Button
+            size="sm"
+            className={`community-card_btn bg-cyan-500 hover:bg-cyan-900`}
+          >
+            <div className="text-white">View</div>
           </Button>
         </Link>
 
