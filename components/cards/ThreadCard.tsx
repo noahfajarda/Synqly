@@ -62,6 +62,37 @@ export default function ThreadCard({
               />
             </Link>
             <div className="thread-card_bar" />
+            {!isComment && comments.length > 0 && (
+              <Link className="pt-2" href={`/thread/${id}`}>
+                {/* comments with 1 unique user */}
+                {comments.length == 1 ? (
+                  <Image
+                    src={comments[0].author.image}
+                    alt={comments[0].author.name}
+                    width={25}
+                    height={25}
+                    className="rounded-full object-cover outline outline-offset-2 outline-2 outline-emerald-300"
+                  />
+                ) : (
+                  <div className="flex">
+                    {/* comments with 2 or more unique users */}
+                    {comments.slice(0, 2).map((comment, idx) => {
+                      const translateVal = idx % 2 == 0 ? "3" : "-3";
+                      return (
+                        <Image
+                          key={idx}
+                          src={comment.author.image}
+                          alt={comment.author.name}
+                          width={25}
+                          height={25}
+                          className={`rounded-full object-cover translate-x-[${translateVal}px] outline outline-offset-1 outline-1 outline-emerald-400`}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </Link>
+            )}
           </div>
           <div className="flex w-full flex-col">
             <div>
@@ -162,9 +193,15 @@ export default function ThreadCard({
               {/* show comments if exist */}
               {!isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
-                  <p className="mt-1 text-subtle-medium text-gray-1">
-                    {comments.length} replies
-                  </p>
+                  {comments.length == 1 ? (
+                    <p className="mt-1 text-subtle-medium text-gray-1">
+                      {comments.length} reply
+                    </p>
+                  ) : (
+                    <p className="mt-1 text-subtle-medium text-gray-1">
+                      {comments.length} replies
+                    </p>
+                  )}
                 </Link>
               )}
             </div>

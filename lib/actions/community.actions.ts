@@ -53,6 +53,7 @@ export async function fetchCommunityDetails(id: string) {
   try {
     connectToDB();
 
+    // community that matches id, populated with values below
     const communityDetails = await Community.findOne({ id }).populate([
       "createdBy",
       {
@@ -74,6 +75,7 @@ export async function fetchCommunityPosts(id: string) {
   try {
     connectToDB();
 
+    // populate with author, children, and nested community
     const communityPosts = await Community.findById(id).populate({
       path: "threads",
       model: Thread,

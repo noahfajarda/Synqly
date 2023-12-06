@@ -8,6 +8,7 @@ import { fetchCommunityDetails } from "@/lib/actions/community.actions";
 import UserCard from "@/components/cards/UserCard";
 
 export default async function Page({ params }: { params: { id: string } }) {
+  // retrieve current user with clerk
   const user = await currentUser();
   if (!user) return null;
 
