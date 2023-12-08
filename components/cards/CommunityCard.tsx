@@ -29,7 +29,7 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
 
         <div>
           <Link href={`/communities/${id}`}>
-            <h4 className="text-base-semibold text-light-1 hover:text-cyan-400 transition-all">
+            <h4 className="text-base-semibold text-light-1 hover:text-cyan-300 transition-all">
               {name}
             </h4>
           </Link>
@@ -43,7 +43,7 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
         <Link href={`/communities/${id}`}>
           <Button
             size="sm"
-            className={`community-card_btn bg-cyan-500 hover:bg-cyan-900`}
+            className={`community-card_btn bg-cyan-600 hover:bg-cyan-900`}
           >
             <div className="text-white">View</div>
           </Button>

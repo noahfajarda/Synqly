@@ -39,7 +39,7 @@ export default function AssetUploader({
                   {...getInputProps()}
                   accept="image/png, image/jpg, video/mp4"
                 />
-                <p className="flex justify-center items-center gap-5 bg-primary-500 rounded cursor-pointer hover:bg-slate-900/90 stroke-white transition-all p-2 text-white">
+                <p className="flex justify-center items-center gap-5 bg-cyan-600 hover:bg-cyan-900 rounded cursor-pointer hover:bg-slate-900/90 stroke-white transition-all p-2 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

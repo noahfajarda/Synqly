@@ -47,7 +47,7 @@ export default function ProfileHeader({
       <div className="mt-12 h-0.5 w-full bg-dark-3" />
       <Link
         href="/profile/edit"
-        className={`leftsidebar_link flex justify-center text-white bg-primary-500 hover:bg-violet-400 transition-all`}
+        className={`leftsidebar_link flex justify-center text-white bg-cyan-600 hover:bg-cyan-900 transition-all`}
       >
         Edit Profile
       </Link>

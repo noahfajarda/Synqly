@@ -22,8 +22,8 @@ export default function BottomBar() {
               href={link.route}
               key={link.label}
               className={`bottombar_link ${
-                isActive && "bg-primary-500"
-              } hover:bg-green-400 transition-all`}
+                isActive && "bg-cyan-600"
+              } hover:bg-cyan-900 transition-all`}
             >
               <Image
                 src={link.imgURL}

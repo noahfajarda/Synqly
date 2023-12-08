@@ -25,7 +25,7 @@ export default async function page() {
             {activity.map((activity) => (
               // render each comment and link to original post
               <Link key={activity._id} href={`/thread/${activity.parentId}`}>
-                <article className="activity-card bg-cyan-500 hover:bg-cyan-900 transition-all">
+                <article className="activity-card bg-cyan-600 hover:bg-cyan-900 transition-all">
                   <Image
                     src={activity.author.image}
                     alt="Profile Picture"
@@ -34,12 +34,12 @@ export default async function page() {
                     className="rounded-full object-cover"
                   />
                   <p className="!text-small-regular text-light-1">
-                    <span className="mr-1 text-primary-500">
+                    <span className="mr-1 text-emerald-300">
                       {activity.author.name}
                     </span>
                     replied to your post:
                   </p>
-                  <p className="!text-small-regular text-indigo-400">
+                  <p className="!text-small-regular text-emerald-300">
                     {activity.text}
                   </p>
                 </article>
