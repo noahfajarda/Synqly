@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider afterSignInUrl="/" afterSignUpUrl="/onboarding">
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={`${inter.className} bg-dark-1`}>
           <video
             src={

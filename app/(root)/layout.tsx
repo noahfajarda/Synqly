@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     // clerk provider wrapper for authentication
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={"overscroll-none " + inter.className}>
           <TopBar />
           <main className="flex flex-row">

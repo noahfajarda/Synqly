@@ -16,3 +16,4 @@
 - [Vercel Redeploy](https://synqly.vercel.app/)
 - [Cloudinary](https://console.cloudinary.com/console/c-a93be4c19875cf5fd32251bfff624e/media_library/folders/c5ffce1e3f093dc3c8b625c03f86299144)
   - Login: noahfajarda@gmail.com
+- [Vercel](https://vercel.com/noahfajarda/synqly)
